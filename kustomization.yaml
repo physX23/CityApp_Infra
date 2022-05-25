@@ -4,3 +4,4 @@ secretGenerator:
   - password=123qweASD
 resources:
   - db.yaml
+  - app.yaml
