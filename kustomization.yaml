@@ -1,0 +1,6 @@
+secretGenerator:
+- name: mysql-pass
+  literals:
+  - password=123qweASD
+resources:
+  - db.yaml
