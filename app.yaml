@@ -9,26 +9,30 @@ spec:
     - port: 80
   selector:
     app: app
-    tier: web
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app
+  name: city-app
   labels:
     app: app
 spec:
-  serviceName: app-svc
+  replicas: 2
   selector:
     matchLabels:
       app: app
-      tier: app
   template:
     metadata:
       labels:
         app: app
-        tier: app
     spec:
       containers:
-      - image: cityapp:latest
-        name: app
+      - name: city-app
+        image: physx23/city-app:latest
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "100m"
+          limits:
+            memory: "64Mi"
+            cpu: "200m"

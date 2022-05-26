@@ -1,15 +1,20 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: app-ingress
-  namespace: default
-  annotations:
-    ingress.kubernetes.io/rewrite-target: /
+  name: app-ing
 spec:
+  defaultBackend:
+    service:
+      name: app-svc
+      port:
+        number: 80
   rules:
   - http:
       paths:
-        - path: /add
-          backend:
-            serviceName: app-svc
-            servicePort: 80
+      - path: /add
+        pathType: Prefix
+        backend:
+          service:
+            name: app-svc
+            port:
+              number: 80
